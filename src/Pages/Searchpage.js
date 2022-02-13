@@ -10,7 +10,7 @@ export class Searchpage extends Component {
   componentDidMount() {
     const query = `{filterEmployees(filtro:""){
       id,first_name,last_name,email,Nationality,Phone,civil_status,Birthday}}`;
-    fetch('http://localhost:4000/graphql', {
+    fetch('https://vast-reaches-55098.herokuapp.com/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', },
       body: JSON.stringify({ query })
@@ -23,7 +23,7 @@ export class Searchpage extends Component {
     const handler = (e) => {
       const query = `{filterEmployees(filtro:"${e.target.value}"){
         id,first_name,last_name,email,Nationality,Phone,civil_status,Birthday}}`;
-      fetch('http://localhost:4000/graphql', {
+      fetch('https://vast-reaches-55098.herokuapp.com/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', },
         body: JSON.stringify({ query })
@@ -45,7 +45,7 @@ export class Searchpage extends Component {
         civil_status:"${employee.civil_status}", 
         Birthday:"${employee.Birthday}")}`;
       console.log(query);
-      fetch('http://localhost:4000/graphql', {
+      fetch('https://vast-reaches-55098.herokuapp.com/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', },
         body: JSON.stringify({ query })
