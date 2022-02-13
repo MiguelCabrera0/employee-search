@@ -17,7 +17,7 @@ export const Loginpage = ({ auth }) => {
         setUser('');
         setPwd('');
         const query = `{logIn(user:"${user}",pwd:"${pwd}")}`;
-        fetch('http://localhost:4000/graphql', {method: 'POST',
+        fetch('https://git.heroku.com/vast-reaches-55098.git', {method: 'POST',
             headers: {'Content-Type': 'application/json','Accept': 'application/json',},
             body: JSON.stringify({
                 query
