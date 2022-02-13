@@ -16,9 +16,17 @@ var schema = buildSchema(`
     civil_status: String,
     Birthday: String
   }
-  type Sequence {
-    Employee(first: Int): [Employee]
-  }
+  type Mutation{
+    setEmployee(
+      id: Int,
+      first_name:String,
+      last_name:String,
+      email:String,
+      Nationality:String,
+      Phone:String,
+      civil_status:String,
+      Birthday: String):String
+      }
   type Query {
     getEmployee(ids: ID!): Employee
     getEmployees: [Int]
@@ -42,8 +50,13 @@ var root = {
   filterEmployees: ({ filtro }) => {
     const fil = filtro.toLowerCase();
     return data.filter(x => x.first_name.toLowerCase().includes(fil) || x.last_name.toLocaleLowerCase().includes(fil)
-      || x.Birthday.includes(fil)|| x.Nationality.toLowerCase().includes(fil)||
-      x.Phone.includes(fil)||x.email.toLowerCase().includes(fil));
+      || x.Birthday.includes(fil) || x.Nationality.toLowerCase().includes(fil) ||
+      x.Phone.includes(fil) || x.email.toLowerCase().includes(fil)).sort((a, b) => (a.first_name > b.first_name) ? 1 : ((b.first_name > a.first_name) ? -1 : 0));
+  },
+  setEmployee: ({ id, first_name, last_name, email, Nationality, Phone, civil_status, Birthday }) => {
+    objIndex = data.findIndex(e => e.id == id)
+    data[objIndex] = { id: id, first_name: first_name, last_name: last_name, email: email, Nationality: Nationality, Phone: Phone, civil_status: civil_status, Birthday: Birthday };
+    return "Succcess";
   }
 };
 

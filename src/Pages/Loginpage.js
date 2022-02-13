@@ -24,7 +24,7 @@ export const Loginpage = ({ auth }) => {
             })}).then(r => r.json()).then(data => {
                 if (data.data.logIn) {
                     auth(user, true);
-                    navigate("/Home")
+                    navigate("/Employees")
                 }
             })
     }
